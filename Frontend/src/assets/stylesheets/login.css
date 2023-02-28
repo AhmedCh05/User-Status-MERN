@@ -1,0 +1,53 @@
+#Loginbody {
+    background-image: linear-gradient(to bottom, rgba(12, 8, 8, 0.3), rgba(78, 53, 72, 0.5)),url('../images/login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+#Logincard {
+    padding-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 40%;
+    margin: auto;
+    font-family: arial;
+    background-color: white;
+    border-radius: 12px;
+ }
+
+
+#SignLoginModule{
+    align-items: center;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    padding-bottom: 5%;
+}
+
+#SignFModules{
+    align-items: right;
+    text-align: right;
+    width: 50%;
+    margin-left: 35%;
+}
+
+#loginMainmodule{
+    height:50%;
+    padding-top:10%;
+}
+  
+#logincardButton {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #00AB46;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 18px;
+    border-radius: 8px;
+    margin-bottom: 5%;
+}
+

@@ -1,0 +1,24 @@
+{
+    "cSpell.ignoreWords": [
+        "Xmark",
+        "allusers",
+        "bedit",
+        "changepass",
+        "emailvalidate",
+        "fontawesome",
+        "forgotpassword",
+        "fortawesome",
+        "getbgcolor",
+        "middlewares",
+        "passwordvalidate",
+        "strpied",
+        "toastify",
+        "userdata",
+        "userid"
+    ],
+    "cSpell.words": [
+        "bodyparser",
+        "gettxtcolor",
+        "passwordvalidate"
+    ]
+}

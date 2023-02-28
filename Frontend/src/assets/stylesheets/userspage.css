@@ -1,0 +1,68 @@
+#UserCard {
+    max-width: 100vw;
+    margin: auto;
+    font-family: arial;
+    background-color: white;
+    height:100vw;
+}
+
+.UserprofilecngPass {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #00AB46;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 18px;
+    border-radius: 8px;
+    margin-bottom: 5%;
+}
+
+
+#UserProfileErrors{
+    position: absolute;
+    color: red;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+#UserProfileSign{
+    align-items: center;
+    text-align: center;
+    width: 50%;
+    padding-bottom: 5%;
+}
+
+.bedit {
+    border: none;
+    padding: 2px;
+    color: white;
+    background-color: #00AB46;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    width: 5%;
+    font-size: 18px;
+    border-radius: 15px;
+    margin-bottom: 5%;
+    margin-left: 20px;
+    margin-right: 20px
+}
+
+#UserProfileCngPassword {
+    border: none;
+    padding: 18px;
+    color: grey;
+    background-color: whitesmoke;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    width: 10%;
+    font-size: 18px;
+    border-radius: 15px;
+    margin-bottom: 5%;
+}

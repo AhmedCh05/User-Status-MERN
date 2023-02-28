@@ -1,0 +1,8 @@
+#user-menu ~ #user-menu-dropdown{
+    transform
+    ease-in duration-75 opacity-0 scale-0
+}
+#user-menu ~ #user-menu-dropdown:focus-within, #user-menu:focus ~ #user-menu-dropdown
+{    
+    @apply ease-out duration-100 opacity-100 scale-100
+}
