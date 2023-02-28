@@ -1,7 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import { FcCheckmark } from "react-icons/fc";
 import { RxCross2 } from "react-icons/rx";
-import img from '../assets/images/profile.png'
 
 function Users({obj}){
     return (
@@ -15,7 +14,7 @@ function Users({obj}){
                     <div className="w-1/3 flex justify-end">
                       <img
                         className="w-10 rounded-full h-10"
-                        src={img}
+                        src={obj.ProfilePicture}
                         alt="profile"
                       />
                     </div>

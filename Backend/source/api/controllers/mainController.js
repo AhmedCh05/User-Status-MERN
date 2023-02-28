@@ -92,6 +92,25 @@ app.post("/User/login",async(req,res)=>{
 	});
 });
 
+/////              DISPLAY ACTIVE USER PROFILE IMG
+
+app.get("/ActiveUser",getUserID,async (req, res)=>{
+    User.findOne({ _id:(id) }, (findErr, result) => {
+		if (findErr) {
+		  console.error(findErr);
+		  res.status(500).send(findErr);
+		  return;
+		}
+		if(result == null){
+		  res.status(404).send("User Profile Not Found");
+  
+		}
+		else {
+		  res.send(result.ProfilePicture);
+		}
+	  });
+});
+
 // ////              DISPLAY All USERS
 
 // app.get("/allUsers", async (req, res)=>{
@@ -199,7 +218,7 @@ app.put("/changePassword",getUserID,async (req, res)=>{
 
 ////            DISPLAY BY ID
 
-app.get('/User',getUserID, async(req, res) => {
+app.get('/CurrentUser',getUserID, async(req, res) => {
 	User.findOne({ _id:(req.user.id) }, (findErr, result) => {
 		if (findErr) {
 		  console.error(findErr);
@@ -281,10 +300,10 @@ const s3 = new S3Client({
 })
 
 
-app.post('/userIcon',getUserID,upload.single('image'), async (req, res) => {
+app.post('/userIcon',upload.single('image'), async (req, res) => {
 	
 	req.file.buffer;
-	const userid = req.user.id;
+	const userid = "63f856494445b4bfe04db2e8";
 	
 	const params = {
 		Bucket : bucketName,
@@ -292,16 +311,32 @@ app.post('/userIcon',getUserID,upload.single('image'), async (req, res) => {
 		Body: req.file.buffer,
 		ContentType : req.file.mimetype,
 	}
+
 	const command = new PutObjectCommand(params)
 	await s3.send(command);
-	res.send("Success")
+	
+	const getObjectParams = {
+		Bucket:bucketName,
+		Key: `${userid}.png`
+	}
+	const cmd = new GetObjectCommand(getObjectParams);
+	const url = await getSignedUrl(s3,cmd,{expiresIn:388800});
 
+	User.updateOne(
+		{_id : userid},
+		{$set:{ProfilePicture: url}},
+		(updateErr)=>{
+			if(updateErr){
+				console.error(updateErr);
+				res.status(500).send(updateErr);
+				return;
+			}
+			res.send({message:"User Image Added"})
+		}
+	)
     
 })
 
-////					GET PRESIGNED URLS AND GET IMAGE
-
-app.get('/userIcon',)
 
 ////					SEARCH BAR
 

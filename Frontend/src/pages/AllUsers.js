@@ -21,21 +21,18 @@ function AllUsers() {
         }
     });
     const [response, setResponse] = useState();
-    const token = localStorage.getItem('token');
 
     useEffect(() => {
-        const config = { headers: { Authorization: `Bearer ${token}` } };
-        axios.get("http://localhost:3000/allusers", { params: { pageNo: currentPage, size: 5 } }, config).then((res) => {
+        axios.get("http://localhost:3000/allusers", { params: { pageNo: currentPage, size: 5 } }).then((res) => {
             setResponse(res.data);
-            setTotalPages(res?.data?.pages)
+            setTotalPages(res?.data?.pages);
         }
         )
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage]);
-
     return (
         <>
-            <Navbar />
+            <Navbar/>
             <SearchBar />
             <div className="px-28 my-10">
                 <table className="w-full text-center text-sm border-separate border-spacing-y-2">

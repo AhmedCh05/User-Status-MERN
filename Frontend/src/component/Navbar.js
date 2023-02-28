@@ -1,12 +1,22 @@
-import React from "react"
-import "alpinejs"
-import img from '../assets/images/profile.png'
+import React, { useEffect, useState } from "react"
 import logo from '../assets/images/meta.png'
+import axios from "axios";
 import { Anchor } from "react-bootstrap";
 import { faUser, faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Navbar() {
+    const [response, setResponse] = useState();
+    const token = localStorage.getItem('token');
+    const config = {headers:{Authorization:`Bearer ${token}`}};
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/ActiveUser", config).then((res) => {
+            setResponse(res.data);
+        })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    
     return (
         <nav className="bg-white-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -39,7 +49,7 @@ function Navbar() {
                             <div>
                                 <button type="button" className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="true" aria-haspopup="false">
                                     <span className="sr-only">Open user menu</span>
-                                    <img className="h-10 w-10 rounded-full" src={img} alt=""></img>
+                                    <img className="h-10 w-10 rounded-full" src={response} alt=""></img>
                                 </button>
                             </div>
 

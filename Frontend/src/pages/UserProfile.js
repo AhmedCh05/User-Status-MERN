@@ -25,7 +25,7 @@ export default function UserProfile() {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/User", config).then(function (res) {
+    axios.get("http://localhost:3000/CurrentUser", config).then(function (res) {
       setResponse(res.data);
       setTimeout(() => {
         setIsLoading(false);
