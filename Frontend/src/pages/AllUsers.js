@@ -13,7 +13,8 @@ import Pagination from "../component/Pagination";
 
 function AllUsers() {
     const navigate = useNavigate();
-    const [currentPage,setCurrentPage] = useState();
+    const [currentPage,setCurrentPage] = useState(1);
+    const [totalPages,setTotalPages] = useState();
     useEffect(() => {
         if (localStorage.getItem('token') == null) {
             navigate("/login");
@@ -21,14 +22,16 @@ function AllUsers() {
     });
     const [response, setResponse] = useState();
     const token = localStorage.getItem('token');
-    const config = { headers: { Authorization: `Bearer ${token}` } };
 
     useEffect(() => {
-        axios.get("http://localhost:3000/allusers", { params: { pageNo: 1, size: 6 } }, config).then((res) => {
+        const config = { headers: { Authorization: `Bearer ${token}` } };
+        axios.get("http://localhost:3000/allusers", { params: { pageNo: currentPage, size: 5 } }, config).then((res) => {
             setResponse(res.data);
+            setTotalPages(res?.data?.pages)
         }
         )
-    }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentPage]);
 
     return (
         <>
@@ -80,7 +83,8 @@ function AllUsers() {
                     </tbody>
                 </table>
             </div>
-            <Pagination {...{response.pages},setCurrentPage}}/>
+            <Pagination {...{totalPages,setCurrentPage}}
+            />
         </>
     );
 }
