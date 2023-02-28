@@ -8,15 +8,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Navbar() {
     const [response, setResponse] = useState();
     const token = localStorage.getItem('token');
-    const config = {headers:{Authorization:`Bearer ${token}`}};
+    const config = { headers: { Authorization: `Bearer ${token}` } };
 
     useEffect(() => {
         axios.get("http://localhost:3000/ActiveUser", config).then((res) => {
             setResponse(res.data);
         })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    
+
     return (
         <nav className="bg-white-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
