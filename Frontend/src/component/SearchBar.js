@@ -12,7 +12,7 @@ function SearchBar({data,setSearchResult,setisLoading}) {
         if (!event.target.value){
             return setSearchResult(JSON.stringify("NO RECORD FOUND"))
         }
-        const result = data.filter(user=>user.fname.includes(event.target.value) || user.lname.includes(event.target.value))
+        const result = data.filter(user=>user.fname.includes(event.target.value) || user.lname.includes(event.target.value) || user.Occupation.includes(event.target.value))
         setSearchResult(result);
     }
     const SearchQuery = (event) => {
