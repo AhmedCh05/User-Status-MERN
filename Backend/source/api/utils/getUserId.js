@@ -13,7 +13,7 @@ const getUserID = (req, res, next) => {
                 return res.sendStatus(401);
             }
             else {
-                console.log(req.user);
+                //console.log(req.user);
                 next();
             }
         });

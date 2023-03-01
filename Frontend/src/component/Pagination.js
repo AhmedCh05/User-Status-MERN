@@ -1,10 +1,13 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Anchor } from 'react-bootstrap'
 
 export default function Pagination({totalPages,setCurrentPage}) {
     const [pageNo,setPageNo] = useState(1);
-    setCurrentPage(pageNo);
+    useEffect(()=>{
+        setCurrentPage(pageNo);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
     return (
         <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
             <div className="flex flex-1 justify-between sm:hidden">
@@ -65,7 +68,9 @@ export default function Pagination({totalPages,setCurrentPage}) {
                             onClick={()=>{setPageNo(3);setCurrentPage(3);}}
                         >
                             <span className="sr-only">Next</span>
-                            <ChevronRightIcon className="h-5 w-5" aria-hidden="true" onClick={()=>{setCurrentPage(pageNo+1);setPageNo(pageNo+1);}} />
+                            <ChevronRightIcon className="h-5 w-5" aria-hidden="true" onClick={()=>{setPageNo(pageNo+1);setTimeout(() => {
+                                setCurrentPage(pageNo);
+                            }, 2000);}} />
                         </Anchor>
                     </nav>
                 </div>

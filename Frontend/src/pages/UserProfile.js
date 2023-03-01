@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
 import TextField from "../component/Textfield";
-import * as Yup from "yup";
 import "../assets/stylesheets/userspage.css";
-import { Card } from "react-bootstrap";
+import { Anchor, Card } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from '../component/Navbar'
 import "../assets/stylesheets/logout.css"
-
 
 export default function UserProfile() {
   const [response, setResponse] = useState();
@@ -22,6 +20,7 @@ export default function UserProfile() {
     if (localStorage.getItem("token") == null) {
       navigate("/login")
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function UserProfile() {
       setResponse(res.data);
       setTimeout(() => {
         setIsLoading(false);
-      }, 2500);
+      }, 2000);
       toast.success("Data Retrieved Successfully", {
         position: "top-right",
         autoClose: 5000,
@@ -41,20 +40,8 @@ export default function UserProfile() {
         theme: "dark",
       });
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const validate = Yup.object({
-    fname: Yup.string().required("first name required!"),
-    lname: Yup.string().required("last name"),
-    email: Yup.string().email("email is invalid!").required("Email Required!"),
-    DOB: Yup.date()
-      .max(new Date(Date.now() - 567648000000), "You must be at least 18 years")
-      .required("DOB Required"),
-    Bio: Yup.string()
-      .min(20, "Must be more than 20 Words")
-      .max(250, "Should be less than 250 words")
-      .required("Bio Required"),
-  });
 
   if (isLoading) {
     return (
@@ -90,6 +77,15 @@ export default function UserProfile() {
                   </Card.Header>
                   <Card.Body>
                     <Form>
+                    <div className="w-1/6 flex justify-end" style={{marginTop:"2%"}}>
+                      <Anchor href="/user/UserIcon">
+                      <img
+                        className="rounded-full w-20 h-20"
+                        src={response.ProfilePicture}
+                        alt="profile"
+                      />
+                      </Anchor>
+                    </div>
                       <div
                         style={{
                           display: "flex",
@@ -110,6 +106,7 @@ export default function UserProfile() {
                           flexDirection: "row",
                           justifyContent: "space-evenly",
                           marginLeft: "-15%",
+                          marginTop:"-2%"
                         }}
                       >
                         <label

@@ -95,7 +95,7 @@ app.post("/User/login", async (req, res) => {
 /////              DISPLAY ACTIVE USER PROFILE IMG
 
 app.get("/ActiveUser", getUserID, async (req, res) => {
-	User.findOne({ _id: (id) }, (findErr, result) => {
+	User.findOne({ _id: (req.user.id) }, (findErr, result) => {
 		if (findErr) {
 			console.error(findErr);
 			res.status(500).send(findErr);

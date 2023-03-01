@@ -65,7 +65,7 @@ function AllUsers() {
                             <th className="py-2 font-medium border border-l-0">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody key={response?.message}>
                         <>
                             {response?.message.map((i) => {
                                 return (

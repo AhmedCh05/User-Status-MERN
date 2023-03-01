@@ -126,7 +126,6 @@ return (
                 enableReinitialize
                 validationSchema={passwordvalidate}
                 onSubmit={(values) => {
-                    console.log(values)
                     changePassword(values);
                 }}
             >

@@ -8,6 +8,7 @@ import ChangePassword from './pages/ChangePassword';
 import "./App.css"
 import UserProfile from './pages/UserProfile';
 import UpdateProfile from './pages/UpdateProfile';
+import UserIcon from './pages/UserIcon';
 
 function App() {
     return (
@@ -21,7 +22,8 @@ function App() {
               <Route exact path ='/forgotpassword' element={<ForgetPassword/>} />
               <Route exact path ='/userprofile' element={<UserProfile/>} />
               <Route exact path ='/updateuser' element={<UpdateProfile/>} />
-              <Route exact path ='/user/changepassword' element={<ChangePassword/>} />  
+              <Route exact path ='/user/changepassword' element={<ChangePassword/>} />
+              <Route exact path ='/user/UserIcon' element={<UserIcon/>} />
               <Route exact path ='/logout' element={<Logout/>} />                              
 
           </Routes>
