@@ -10,6 +10,8 @@ function UploadIcon() {
     const navigate = useNavigate();
     const [isLoading,setIsLoading] = useState(true);
     const [state, setState] = useState(null);
+    const token = localStorage.getItem('token');
+    const config = { headers: { Authorization: `Bearer ${token}` } };
 
     useEffect(() => {
         if (localStorage.getItem('token') == null) {
@@ -23,7 +25,7 @@ function UploadIcon() {
         event.preventDefault();
         const formData = new FormData();
         formData.append("image", state);
-        await axios.post("http://localhost:3000/userIcon", formData)
+        await axios.post("http://localhost:3000/userIcon", formData,config)
             .then((res) => {
                 toast.success("File Uploaded Successfully", {
                     position: "top-right",

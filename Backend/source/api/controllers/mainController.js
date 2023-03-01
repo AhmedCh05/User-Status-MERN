@@ -300,11 +300,9 @@ const s3 = new S3Client({
 })
 
 
-app.post('/userIcon', upload.single('image'), async (req, res) => {
-
+app.post('/userIcon',getUserID, upload.single('image'), async (req, res) => {
+	const userid = req.user.id;
 	req.file.buffer;
-	const userid = "63f856494445b4bfe04db2e8";
-
 	const params = {
 		Bucket: bucketName,
 		Key: `${userid}.png`,
