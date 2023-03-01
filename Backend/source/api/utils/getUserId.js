@@ -10,7 +10,7 @@ const getUserID = (req, res, next) => {
         verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
             req.user = user;
             if (!user) {
-                return res.sendStatus(401);
+                return res.sendStatus(401).json({error:"TOKEN EXPIRED LOG IN AGAIN"});
             }
             else {
                 //console.log(req.user);
